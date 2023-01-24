@@ -1,0 +1,284 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Orders APIs Documentation",
+        "description": "These the apis generated for the laravel test",
+        "contact": {
+            "email": "suhaibzia786@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "",
+            "description": "Project APIs Server"
+        }
+    ],
+    "paths": {
+        "/api/order": {
+            "post": {
+                "tags": [
+                    "storeOrder"
+                ],
+                "summary": "Store order",
+                "description": "Returns stored order",
+                "operationId": "storeOrder",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreOrderRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful store",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResource"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/order/{order}": {
+            "get": {
+                "tags": [
+                    "getOrderByID"
+                ],
+                "summary": "Get details of single order by id",
+                "description": "Returns a json object with order details",
+                "operationId": "getOrderByID",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "Enter Order ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful get order details by id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No api found"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "UpdateOrder"
+                ],
+                "summary": "Update existing order",
+                "description": "Returns updated order",
+                "operationId": "updateOrder",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "Enter Order ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateOrderRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResource"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "deleteOrderByID"
+                ],
+                "summary": "Delete the order",
+                "description": "Returns boolean status",
+                "operationId": "deleteOrderByID",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "Enter Order ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful deleted"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/order/all": {
+            "post": {
+                "tags": [
+                    "getOrderAll"
+                ],
+                "summary": "Get list of orders",
+                "description": "Returns list of orders",
+                "operationId": "getOrderAll",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "500": {
+                        "description": "Server error occurred"
+                    }
+                }
+            }
+        },
+        "/api/order/updateStatus/{order}": {
+            "post": {
+                "tags": [
+                    "updateOrderStatus"
+                ],
+                "summary": "Update existing order status",
+                "description": "Returns updated order",
+                "operationId": "updateOrderStatus",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "Enter Order ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateOrderRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful status updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResource"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreOrderRequest": {},
+            "UpdateOrderRequest": {},
+            "OrderResource": {}
+        }
+    },
+    "tags": [
+        {
+            "name": "Laravel APIs Testing",
+            "description": "API Endpoints of Orders"
+        }
+    ]
+}
